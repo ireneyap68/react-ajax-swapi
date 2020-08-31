@@ -1,45 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import './App.css'
-import Starship from './Starship'
+import axios from 'axios'
 
 function StarWars() {
-   const [ships, setShips] = useState([])
-   const [loading, setLoading] = useState(true)
+    let [starships, setStarships] = useState([])
+    let [loading, setLoading] = useState(true)
 
-   useEffect(()=>{
-       async function getShips() {
-           let response = await fetch('https://swapi.dev/api/starships/')
-           let data = await response.json()
-           setShips(data.results)
-           setLoading(false)
-       }
-       getShips()
-   }, [])
-
-   const names = ships.map((s, idx) =>
-    <p className='listContainer' key = {idx}>{s.name}</p>
-   )
-   if(!loading) {
+    useEffect(() => {
+        let url = 'https://swapi.dev/api/starships/'
+        axios.get(url)
+        .then(res => {
+            setLoading(false)
+            setStarships(res.data.results)
+        })
+        .catch(error => console.log(error))
+    }, [])
+    if (!loading) {
         return(
-        <div >
-            <Link to={{
-                        pathname: '/starship',
-                        state: names
-                    }}
-                    key={names} 
-                    className='link-text'>
-                    {names} 
-                </Link>
-
-        </div>
+            <div className="ships-container">
+                    {starships = starships.map((starship, i) => {
+                        return(
+    
+                            <div className="ships-item" key={i}>
+    
+                                <button className="ships">
+                                    <Link className="link" to={{
+                                        pathname: '/starship',
+                                        state: starship
+                                    }}
+                                    key={starship.name}
+                                    >
+                                    {starship.name}
+                                    </Link>
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
         )
-    }else{
+    } else {
         return(
-            <div>
-                <h1>Loading</h1>
-            </div>
+            <h1 className="loadpage">Loading...<br></br><img className="App-logo" src="https://i.imgur.com/7Qqj2wn.png" alt="Loading Icon"/></h1>
         )
     }
+    
 }
 export default StarWars

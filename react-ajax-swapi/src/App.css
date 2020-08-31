@@ -9,3 +9,69 @@
   justify-content: space-evenly;
   grid-gap: 30px;
 }
+
+.ships-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: end;
+  justify-content: space-evenly; 
+  margin: 100px auto;
+}
+
+.ships-item{
+  text-align: center;
+  padding: 20px;
+}
+
+.ships{
+  height: 125px;
+  width: 250px;
+  border-radius: 5px;
+  background-color: rgb(23, 60, 51);
+  font-size: 25px;
+}
+
+
+.link{
+  color: white;
+  text-decoration: none;
+}
+.link:hover{
+  text-decoration: underline;
+  color: yellow;
+}
+
+.info-container{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.ship-info{
+  /* height: 150px; */
+  width: 500px;
+  
+  text-align: left;
+  font-size: 25px;
+  line-height: 50px;
+  margin: 200px auto;
+  padding: 20px;
+
+  background-color: rgb(23, 60, 51);
+  border-radius: 5px;
+
+  color: white;
+
+}
+
+.return{
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: white;
+  padding: 0px;
+  font-size: 25px;
+}
+.return:hover{
+  color: yellow;
+}

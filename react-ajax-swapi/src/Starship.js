@@ -1,15 +1,22 @@
 import React from 'react'
+import {useLocation} from 'react-router'
 import {Link} from 'react-router-dom'
 
-const Starship = ({location}) =>{
-    let details = {location}.location.state
+function Starship(props){
+    const location = useLocation()
+
     return(
-        <div>
-            <h1>Name: {details.name}</h1>
-            <h1>Model: {details.model}</h1>
+        <div className="info-container">
+            <div className="ship-info">
+            NAME: {location.state.name}
+            <br/>
+            MODEL: {location.state.model}
             <br/>
             <Link to='/'>Return Home</Link>
+            </div>
         </div>
     )
+
 }
 export default Starship
+
